@@ -32,6 +32,9 @@ public class Booking {
 	@JoinColumn(name = "room_id")
 	private Room room;
 
+	public Booking() {
+	}
+
 	public Booking(Long id, Instant startDateTime, Instant endDateTime, String purpose, BookingStatus status, User user,
 			Room room) {
 		super();
