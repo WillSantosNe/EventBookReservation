@@ -28,7 +28,7 @@ public class Room {
 	@Enumerated(EnumType.ORDINAL)
 	private RoomStatus status;
 
-	@OneToMany(mappedBy = "id.booking", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
 	private List<Booking> bookings;
 
 	public Room() {
