@@ -1,11 +1,14 @@
 package project.entities;
 
+import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import project.enums.Role;
 
@@ -21,7 +24,8 @@ public class User {
 	private String email;
 	private Role role;
 
-	// private List<Booking> bookings;
+	@OneToMany(mappedBy = "id.booking", cascade = CascadeType.ALL)
+	private List<Booking> bookings;
 
 	public User() {
 	}
@@ -62,6 +66,10 @@ public class User {
 	public String getEmail() {
 		return email;
 	}
+	
+	public List<Booking> getBookings() {
+		return bookings;
+	}
 
 	public void setEmail(String email) {
 		this.email = email;
@@ -73,6 +81,10 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
 	}
 
 	@Override
