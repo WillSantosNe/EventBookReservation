@@ -4,6 +4,8 @@ import java.time.Instant;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,6 +24,8 @@ public class Booking {
 	private Instant startDateTime;
 	private Instant endDateTime;
 	private String purpose;
+	
+	@Enumerated(EnumType.ORDINAL)
 	private BookingStatus status;
 
 	@ManyToOne
