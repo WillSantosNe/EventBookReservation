@@ -3,6 +3,8 @@ package project.entities;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -29,6 +31,7 @@ public class Room {
 	private RoomStatus status;
 
 	@OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("room") 
 	private List<Booking> bookings;
 
 	public Room() {

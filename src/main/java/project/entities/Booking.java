@@ -3,6 +3,8 @@ package project.entities;
 import java.time.Instant;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -24,7 +26,7 @@ public class Booking {
 	private Instant startDateTime;
 	private Instant endDateTime;
 	private String purpose;
-	
+
 	@Enumerated(EnumType.ORDINAL)
 	private BookingStatus status;
 
@@ -34,6 +36,7 @@ public class Booking {
 
 	@ManyToOne
 	@JoinColumn(name = "room_id")
+	@JsonIgnoreProperties("bookings") 
 	private Room room;
 
 	public Booking() {
