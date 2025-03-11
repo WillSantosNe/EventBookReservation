@@ -7,6 +7,11 @@ import project.dto.booking.ResponseBookingDTO;
 import project.entities.Room;
 import project.enums.RoomStatus;
 
+/**
+ * Data Transfer Object (DTO) for responding with room details. This class is
+ * designed to encapsulate the information of a room, including its ID, name,
+ * location, capacity, status, and bookings.
+ */
 public class ResponseRoomDTO {
 	private Long id;
 	private String name;

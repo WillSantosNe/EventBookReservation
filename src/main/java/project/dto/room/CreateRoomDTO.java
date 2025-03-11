@@ -1,5 +1,9 @@
 package project.dto.room;
 
+/**
+ * Data Transfer Object (DTO) for creating a room. This class encapsulates the
+ * data required to create a room, including its name, location, and capacity.
+ */
 public class CreateRoomDTO {
 	private String name;
 	private String location;

@@ -1,16 +1,19 @@
 package project.dto.user;
 
+/**
+ * Data Transfer Object (DTO) for creating a user.
+ * This class encapsulates the data required to create a user,
+ * including username, password, and email.
+ */
 public class CreateUserDTO {
 
     private String username;
     private String password;
     private String email;
 
-    // Construtor padrão
     public CreateUserDTO() {
     }
 
-    // Construtor com argumentos
     public CreateUserDTO(String username, String password, String email) {
         this.username = username;
         this.password = password;

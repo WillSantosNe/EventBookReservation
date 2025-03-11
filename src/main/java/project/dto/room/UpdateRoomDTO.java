@@ -2,6 +2,10 @@ package project.dto.room;
 
 import project.entities.Room;
 
+/**
+ * Data Transfer Object (DTO) for updating a room. This class encapsulates the
+ * data required to update a room, including its name, location, and capacity.
+ */
 public class UpdateRoomDTO {
 	private String name;
 	private String location;
