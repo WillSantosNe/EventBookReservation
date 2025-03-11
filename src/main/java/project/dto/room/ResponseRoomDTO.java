@@ -3,6 +3,7 @@ package project.dto.room;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import project.dto.booking.ResponseBookingDTO;
 import project.entities.Room;
 import project.enums.RoomStatus;
 
@@ -12,7 +13,7 @@ public class ResponseRoomDTO {
 	private String location;
 	private Integer capacity;
 	private RoomStatus status;
-	private List<BookingResponseDTO> bookings; // list of bookings
+	private List<ResponseBookingDTO> bookings; // list of bookings
 
 	public ResponseRoomDTO() {
 
@@ -25,7 +26,7 @@ public class ResponseRoomDTO {
 		this.capacity = room.getCapacity();
 		this.status = room.getStatus();
 		this.bookings = room.getBookings() != null
-				? room.getBookings().stream().map(BookingResponseDTO::new).collect(Collectors.toList())
+				? room.getBookings().stream().map(ResponseBookingDTO::new).collect(Collectors.toList())
 				: null;
 	}
 
@@ -49,7 +50,7 @@ public class ResponseRoomDTO {
 		return status;
 	}
 
-	public List<BookingResponseDTO> getBookings() {
+	public List<ResponseBookingDTO> getBookings() {
 		return bookings;
 	}
 
