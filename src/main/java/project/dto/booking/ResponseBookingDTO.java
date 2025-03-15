@@ -17,21 +17,21 @@ public class ResponseBookingDTO {
 	private Instant endDateTime;
 	private String purpose;
 	private BookingStatus status;
-	private UserResponseDTO user; // User who made the reservation
+	private UserResponseDTO user;
 	private ResponseRoomDTO room; // Returns basic information about the reserved room
 
-	public ResponseBookingDTO() {
-
-	}
-
-	public ResponseBookingDTO(Booking booking) {
+	public ResponseBookingDTO(Booking booking, boolean includeRoom) {
 		this.id = booking.getId();
 		this.startDateTime = booking.getStartDateTime();
 		this.endDateTime = booking.getEndDateTime();
 		this.purpose = booking.getPurpose();
 		this.status = booking.getStatus();
 		this.user = booking.getUser() != null ? new UserResponseDTO(booking.getUser()) : null;
-		this.room = booking.getRoom() != null ? new ResponseRoomDTO(booking.getRoom()) : null;
+
+		// Conditionally include room details
+		if (includeRoom && booking.getRoom() != null) {
+			this.room = new ResponseRoomDTO(booking.getRoom(), false); // Avoid loop
+		}
 	}
 
 	public Long getId() {
@@ -61,6 +61,4 @@ public class ResponseBookingDTO {
 	public ResponseRoomDTO getRoom() {
 		return room;
 	}
-	
-	
 }
