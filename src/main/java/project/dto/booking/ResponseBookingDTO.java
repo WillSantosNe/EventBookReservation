@@ -2,7 +2,7 @@ package project.dto.booking;
 
 import java.time.Instant;
 
-import project.dto.room.ResponseRoomDTO;
+import project.dto.room.ResumeRoomDTO;
 import project.dto.user.UserResponseDTO;
 import project.entities.Booking;
 import project.enums.BookingStatus;
@@ -18,20 +18,16 @@ public class ResponseBookingDTO {
 	private String purpose;
 	private BookingStatus status;
 	private UserResponseDTO user;
-	private ResponseRoomDTO room; // Returns basic information about the reserved room
+	private ResumeRoomDTO room; // Returns basic information about the reserved room
 
-	public ResponseBookingDTO(Booking booking, boolean includeRoom) {
+	public ResponseBookingDTO(Booking booking) {
 		this.id = booking.getId();
 		this.startDateTime = booking.getStartDateTime();
 		this.endDateTime = booking.getEndDateTime();
 		this.purpose = booking.getPurpose();
 		this.status = booking.getStatus();
 		this.user = booking.getUser() != null ? new UserResponseDTO(booking.getUser()) : null;
-
-		// Conditionally include room details
-		if (includeRoom && booking.getRoom() != null) {
-			this.room = new ResponseRoomDTO(booking.getRoom(), false); // Avoid loop
-		}
+		this.room = booking.getRoom() != null ? new ResumeRoomDTO(booking.getRoom()) : null;
 	}
 
 	public Long getId() {
@@ -58,7 +54,8 @@ public class ResponseBookingDTO {
 		return user;
 	}
 
-	public ResponseRoomDTO getRoom() {
+	public ResumeRoomDTO getRoom() {
 		return room;
 	}
+
 }
