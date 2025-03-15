@@ -3,7 +3,7 @@ package project.entities;
 import java.time.Instant;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -36,7 +36,6 @@ public class Booking {
 
 	@ManyToOne
 	@JoinColumn(name = "room_id")
-	@JsonIgnoreProperties("bookings") 
 	private Room room;
 
 	public Booking() {
