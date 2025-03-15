@@ -3,14 +3,13 @@ package project.dto.room;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import project.dto.booking.ResponseBookingDTO;
+import project.dto.booking.ResumeBookingDTO;
 import project.entities.Room;
 import project.enums.RoomStatus;
 
 /**
- * Data Transfer Object (DTO) for responding with room details. This class is
- * designed to encapsulate the information of a room, including its ID, name,
- * location, capacity, status, and bookings.
+ * Data Transfer Object (DTO) for responding with room details. This class
+ * allows dynamic control over whether to include bookings.
  */
 public class ResponseRoomDTO {
 	private Long id;
@@ -18,11 +17,7 @@ public class ResponseRoomDTO {
 	private String location;
 	private Integer capacity;
 	private RoomStatus status;
-	private List<ResponseBookingDTO> bookings; // list of bookings
-
-	public ResponseRoomDTO() {
-
-	}
+	private List<ResumeBookingDTO> bookings; // Reservas resumidas
 
 	public ResponseRoomDTO(Room room) {
 		this.id = room.getId();
@@ -30,9 +25,12 @@ public class ResponseRoomDTO {
 		this.location = room.getLocation();
 		this.capacity = room.getCapacity();
 		this.status = room.getStatus();
-		this.bookings = room.getBookings() != null
-				? room.getBookings().stream().map(ResponseBookingDTO::new).collect(Collectors.toList())
-				: null;
+
+		if (room.getBookings() != null) {
+			this.bookings = room.getBookings().stream().map(ResumeBookingDTO::new) 
+																					
+					.collect(Collectors.toList());
+		}
 	}
 
 	public Long getId() {
@@ -55,8 +53,7 @@ public class ResponseRoomDTO {
 		return status;
 	}
 
-	public List<ResponseBookingDTO> getBookings() {
+	public List<ResumeBookingDTO> getBookings() {
 		return bookings;
 	}
-
 }
