@@ -17,7 +17,7 @@ public class ResponseRoomDTO {
 	private String location;
 	private Integer capacity;
 	private RoomStatus status;
-	private List<ResumeBookingDTO> bookings; // Reservas resumidas
+	private List<ResumeBookingDTO> bookings;
 
 	public ResponseRoomDTO(Room room) {
 		this.id = room.getId();
