@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import project.dto.user.CreateUserDTO;
@@ -23,6 +24,11 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	
+	
 	/**
 	 * Creates a new user with the given details.
 	 *
@@ -33,7 +39,10 @@ public class UserService {
 		User user = new User();
 		user.setUsername(dto.getUsername());
 		user.setEmail(dto.getEmail());
-		user.setPassword(dto.getPassword()); // TODO: In production, encrypt the password.
+		
+		// Encrypt password before saving
+		user.setPassword(passwordEncoder.encode(dto.getPassword()));
+		
 		user.setRole(Role.USER);
 
 		return new UserResponseDTO(userRepository.save(user));
