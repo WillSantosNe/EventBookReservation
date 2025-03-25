@@ -10,6 +10,9 @@ import project.dto.auth.AuthResponseDTO;
 import project.entities.User;
 import project.repositories.UserRepository;
 
+/**
+ * Service responsible for handling user authentication and JWT token generation.
+ */
 @Service
 public class AuthService {
 
@@ -22,6 +25,13 @@ public class AuthService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	/**
+	 * Authenticates a user based on provided credentials and returns a JWT token.
+	 *
+	 * @param dto the authentication request containing username and password
+	 * @return an {@link AuthResponseDTO} containing the generated JWT token
+	 * @throws RuntimeException if the user is not found or the password is invalid
+	 */
 	public AuthResponseDTO authenticate(AuthRequestDTO dto) {
 		User user = userRepository.findByUsername(dto.getUsername())
 				.orElseThrow(() -> new RuntimeException("User not found"));
