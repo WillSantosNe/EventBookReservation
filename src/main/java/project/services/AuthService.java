@@ -36,6 +36,8 @@ public class AuthService {
 		User user = userRepository.findByUsername(dto.getUsername())
 				.orElseThrow(() -> new RuntimeException("User not found"));
 
+
+		
 		if (!passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
 			throw new RuntimeException("Invalid password");
 		}
