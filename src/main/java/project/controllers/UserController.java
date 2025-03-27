@@ -24,10 +24,12 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	/*
 	@PostMapping
 	public UserResponseDTO createUser(@RequestBody CreateUserDTO dto) {
 		return userService.createUser(dto);
 	}
+	*/
 
 	@PutMapping("/{id}")
 	public UserResponseDTO updateUser(@PathVariable Long id, @RequestBody UpdateUserDTO dto) {
